@@ -1,0 +1,48 @@
+.grid-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 18rem;
+  overflow-y: auto;
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background-color: #e5e7eb;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+}
+
+.chip.selected {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #fee2e2;
+  color: #991b1b;
+  font-weight: 600;
+  text-align: center;
+}

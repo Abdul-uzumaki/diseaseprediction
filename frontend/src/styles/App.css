@@ -1,0 +1,121 @@
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #87CEFA, #98FB98);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 700px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #004d40;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: rgba(255,255,255,0.7);
+  transition: 0.3s;
+}
+
+.input-field:focus {
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0,188,212,0.4);
+}
+
+.body-section {
+  margin-bottom: 20px;
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chip:hover {
+  transform: scale(1.05);
+  background: #e0f7fa;
+}
+
+.chip.selected {
+  background: #00bcd4;
+  color: #fff;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 15px;
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #00796b;
+}
+
+.error-msg {
+  margin-top: 10px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+.disclaimer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  background: rgba(255,255,255,0.6);
+  padding: 10px 15px;
+  border-radius: 12px;
+  max-width: 700px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  line-height: 1.5;
+}
+.disclaimer strong {
+  color: #d32f2f;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
