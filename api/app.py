@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the trained model
-model = joblib.load('disease_predictor_model.pkl')
+model = joblib.load('./disease_predictor_model.pkl')
 print(len(model.classes_))
 
 
