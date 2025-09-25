@@ -34,7 +34,7 @@ export default function App() {
 
     try {
       const payload = { ...symptoms, age: Number(age), gender: gender.toLowerCase() };
-      const res = await fetch("http://127.0.0.1:5000/predict", {
+      const res = await fetch("https://diseaseprediction-topaz.vercel.app/api/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
