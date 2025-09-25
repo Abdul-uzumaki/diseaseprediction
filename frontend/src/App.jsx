@@ -34,6 +34,7 @@ export default function App() {
 
     try {
       const payload = { ...symptoms, age: Number(age), gender: gender.toLowerCase() };
+      const apiUrl = import.meta.env.VITE_API_URL;
       const res = await fetch("https://diseaseprediction-steel.vercel.app/api/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
