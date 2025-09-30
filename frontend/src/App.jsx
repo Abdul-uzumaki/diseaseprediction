@@ -34,12 +34,14 @@ export default function App() {
 
     try {
       const payload = { ...symptoms, age: Number(age), gender: gender.toLowerCase() };
-      const apiUrl = import.meta.env.VITE_API_URL;
-      const res = await fetch("https://diseaseprediction-steel.vercel.app/api/predict", {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000/predict";
+
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       if (!res.ok) throw new Error(res.statusText);
 
       const data = await res.json();
@@ -51,7 +53,7 @@ export default function App() {
 
       setStep(3);
 
-      // Open report
+      // Open report window with formatted HTML content
       const reportWindow = window.open("", "_blank");
       reportWindow.document.write(`
         <html>
@@ -101,6 +103,7 @@ export default function App() {
           <body>
             <div class="container" id="report">
               <h1>Disease Prediction Report</h1>
+
               <h2>User Info</h2>
               <p><strong>Name:</strong> ${name}</p>
               <p><strong>Phone:</strong> ${phone}</p>
@@ -139,14 +142,37 @@ export default function App() {
   return (
     <div className="app-wrapper">
       <div className="card">
+
         {step === 1 && (
           <>
             <h1>Disease-Predictor</h1>
             <form onSubmit={handleUserInfoSubmit}>
-              <input type="text" placeholder="Full Name" value={name} onChange={e => setName(e.target.value)} className="input-field" />
-              <input type="tel" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} className="input-field" />
-              <input type="number" placeholder="Age" value={age} onChange={e => setAge(e.target.value)} className="input-field" />
-              <select value={gender} onChange={e => setGender(e.target.value)} className="input-field">
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                className="input-field"
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
+                className="input-field"
+              />
+              <input
+                type="number"
+                placeholder="Age"
+                value={age}
+                onChange={e => setAge(e.target.value)}
+                className="input-field"
+              />
+              <select
+                value={gender}
+                onChange={e => setGender(e.target.value)}
+                className="input-field"
+              >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -160,17 +186,29 @@ export default function App() {
         {step === 2 && (
           <>
             <h1>Select Symptoms</h1>
-            <input type="text" placeholder="Search symptoms..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="input-field" />
+            <input
+              type="text"
+              placeholder="Search symptoms..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="input-field"
+            />
             <form onSubmit={handleSubmit}>
               {Object.entries(symptomsByBody).map(([body, arr]) => {
-                const filtered = arr.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase()));
+                const filtered = arr.filter(s =>
+                  s.toLowerCase().includes(searchTerm.toLowerCase())
+                );
                 if (!filtered.length) return null;
                 return (
                   <div key={body} className="body-section">
                     <h2>{body}</h2>
                     <div className="chip-grid">
                       {filtered.map(sym => (
-                        <div key={sym} onClick={() => toggle(sym)} className={`chip ${symptoms[sym] ? "selected" : ""}`}>
+                        <div
+                          key={sym}
+                          onClick={() => toggle(sym)}
+                          className={`chip ${symptoms[sym] ? "selected" : ""}`}
+                        >
                           {sym.replace(/_/g, " ")}
                         </div>
                       ))}
@@ -178,7 +216,9 @@ export default function App() {
                   </div>
                 );
               })}
-              <button type="submit" className="btn-primary">{loading ? "Predicting..." : "Predict Disease"}</button>
+              <button type="submit" className="btn-primary">
+                {loading ? "Predicting..." : "Predict Disease"}
+              </button>
             </form>
           </>
         )}
@@ -187,16 +227,20 @@ export default function App() {
           <div>
             <h1>Prediction Completed 🎉</h1>
             <p>Your report has been generated in a new tab. Please check it.</p>
-            <button onClick={() => setStep(1)} className="btn-primary">Start Again</button>
+            <button onClick={() => setStep(1)} className="btn-primary">
+              Start Again
+            </button>
           </div>
         )}
 
         {error && <div className="error-msg">{error}</div>}
-         <p className="disclaimer">
+
+        <p className="disclaimer">
           Disclaimer: This web app does not provide 100% accurate results.  
           It only suggests <strong>possible diseases</strong> based on entered symptoms.  
           Always consult a qualified doctor for medical advice.
-          </p>
+        </p>
+
       </div>
     </div>
   );
