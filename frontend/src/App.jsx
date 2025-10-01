@@ -34,7 +34,7 @@ export default function App() {
 
     try {
       const payload = { ...symptoms, age: Number(age), gender: gender.toLowerCase() };
-      const apiUrl = import.meta.env.VITE_API_URL || "https://diseaseprediction-r1zi.onrender.com/predict";
+      const apiUrl = import.meta.env.VITE_API_URL || "https://diseaseprediction-r1zi.onrender.com";
 
       const res = await fetch(apiUrl, {
         method: "POST",
