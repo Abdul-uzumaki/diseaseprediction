@@ -1,5 +1,6 @@
 # Use official Python image with a compatible version
-FROM python:3.10-slim-buster
+FROM python:3.10-slim-bullseye
+
 
 # Install system dependencies for pandas and build tools
 RUN apt-get update && apt-get install -y build-essential python3-dev libatlas-base-dev
